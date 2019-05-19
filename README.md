@@ -12,6 +12,6 @@ This is Eclipse IDE Java project that automates test cases testing Wikipedia amo
 
 4.  Exercise_Four_Class - navigates to a wikipedia article, copies the first paragraph, copies it to a text box in pastebin.com and verifies that copied and pasted texts are the same.
 
-5.  Extra_Exercise_Four_Class - fills out a search from on imdb.com, searches for office, sorts by rating, and outputs top 5 results.
+5.  Extra_Exercise_Four_Class - fills out a search form on imdb.com, searches for office, sorts by rating, and outputs top 5 results.
 
 6.  Extra_Exercise_Five_Class - navigates to random wikipedia page and follows the first link until a webpage is opened for science or an infinite loop is encountered.
