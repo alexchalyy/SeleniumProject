@@ -13,12 +13,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.*;
 
-
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.datatransfer.StringSelection;
 
 public class Common_Methods_Class {
 // 	This class contains normally used methods for Selenium Eclipse Java exercises.
@@ -28,7 +28,7 @@ public class Common_Methods_Class {
 	WebDriver SetChrome()	{
 	//  Returns set up chrome webdriver.	
 		
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\alex\\eclipse-workspace\\SeleniumProject\\web_drivers\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\alexc\\SeleniumProject-master\\SeleniumProject\\SeleniumProject\\web_drivers\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		
 		return driver;
@@ -39,7 +39,7 @@ public class Common_Methods_Class {
 	WebDriver SetFireFox()	{
 	//	Returns set up FireFox WebDriver.
 		
-		System.setProperty("webdriver.gecko.driver", "C:\\Users\\alex\\eclipse-workspace\\SeleniumProject\\web_drivers\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\alexc\\OneDrive\\Desktop\\SeleniumProject\\SeleniumProject\\web_drivers\\geckodriver.exe");
 		FirefoxOptions options = new FirefoxOptions();
 		options.setCapability("marionette", false);
 		WebDriver webDriver = new FirefoxDriver(options);
@@ -52,7 +52,7 @@ public class Common_Methods_Class {
 	WebDriver SetIE()	{
 	//	Returns set up IE Webdriver.
 		
-		System.setProperty("webdriver.ie.driver", "C:\\Users\\alex\\eclipse-workspace\\SeleniumProject\\web_drivers\\IEDriverServer.exe");
+		System.setProperty("webdriver.ie.driver", "C:\\Users\\alexc\\OneDrive\\Desktop\\SeleniumProject\\SeleniumProject\\web_drivers\\IEDriverServer.exe");
 		WebDriver Driver = new InternetExplorerDriver();
 		
 		return Driver;
@@ -134,15 +134,17 @@ public class Common_Methods_Class {
 	
 	//--------------------------------------------------------------------------------------
 	
-	void CopyParagraph(Actions build, WebDriver driver, String xpath, int x1, int y1, int x2, int y2)	{
+	void CopyParagraph(WebDriver driver, String xpath)	{
 	//	Selects and copies paragraph from a web page using a web element as a reference point.
-	//	Receives  actions object, web driver, web element xpath as well as lower right hand corner and upper left hand corner x and y coordinates.
+	//	Receives web driver, web element xpath.
 		
 		WebElement start = driver.findElement(By.xpath(xpath));
+		String text = start.getText();
 		
-		build.dragAndDropBy(start, x1, y1).keyDown(Keys.CONTROL).dragAndDropBy(start, x2, y2).sendKeys("c").keyUp(Keys.CONTROL);
-		Action selectParagraph = build.build();
-		selectParagraph.perform();
+		System.out.println("This is the copied text: " + text);
+		StringSelection stringSelection = new StringSelection(text);
+		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		clipboard.setContents(stringSelection, null);		
 	}
 	
 	//---------------------------------------------------------------------------------------
@@ -186,7 +188,10 @@ public class Common_Methods_Class {
     
     	WebElement Text_Box = Driver.findElement(By.xpath(xpath));
 
+    	System.out.println("Title: " + title);
+    	Wait(7);
     	Text_Box.sendKeys(title);
+    	Wait(1);
     }
     
 	//-----------------------------------------------------------------------------------------
@@ -194,11 +199,16 @@ public class Common_Methods_Class {
 	void Print_Result_Titles(WebDriver Driver, String result_xpath_beginning, String result_xpath_end, int start, int end)	{
 	//	Prints the received result titles from the search window. Receives starting xpath of result, the amount of results to print, and the WebDriver containing web page information.
 	
+		WebElement result;
+		
 		for (int c = start; c < end; c++)	{
 			String index = Integer.toString(c);
 			String xpath = result_xpath_beginning + '[' + index + ']' + result_xpath_end;
-			WebElement result = Driver.findElement(By.xpath(xpath));
-			//System.out.println("xpath = " + xpath);
+			try	{
+				result = Driver.findElement(By.xpath(xpath));
+			} catch (Exception e)	{
+				result = Driver.findElement(By.xpath(xpath + "[1]"));
+			}
 			System.out.println(result.getText());
 		}
 	}
@@ -218,6 +228,20 @@ public class Common_Methods_Class {
 			}
 		}
 		return false;
+	}
+	
+	//--------------------------------------------------------------------------------------------------------------
+	
+	void Wait(int seconds) {
+	//	Waits given amount of seconds.
+		
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
 

@@ -17,7 +17,7 @@ public class Exercise_Two_Class extends Common_Methods_Class {
 	//	Constructor initializes necessary global variables.
 		
 		//location = "C:\\Users\\alex\\Desktop\\java\\selenium\\selenium_project\\selenium_project\\src\\selenium_project\\exercise_2.htm";
-		location = "C:\\Users\\alex\\eclipse-workspace\\SeleniumProject\\src\\exercise_2.htm";
+		location = "C:\\Users\\alexc\\SeleniumProject-master\\SeleniumProject\\SeleniumProject\\src\\exercise_2.htm";
 	}
 	
 	//---------------------------------------------------------------------------------

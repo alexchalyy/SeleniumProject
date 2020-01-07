@@ -14,8 +14,8 @@ public class Extra_Exercise_Four_Class extends Common_Methods_Class {
 		search_xpath = "//*[@id=\"main\"]/div[1]/div[2]/input";
 		title = "office";
 		search_button = "//*[@id=\"main\"]/p[3]/button";
-		user_rating_sort_button = "//*[@id=\"main\"]/div/div/div[2]/a[3]";
-		beginning_xpath = "//*[@id=\"main\"]/div/div/div[3]/div";
+		user_rating_sort_button = "//*[@id=\"main\"]/div/div[2]/a[3]";
+		beginning_xpath = "//*[@id=\"main\"]/div/div[3]/div/div";
 		end_xpath = "/div[3]/h3/a";
 	}
 	
@@ -27,7 +27,8 @@ public class Extra_Exercise_Four_Class extends Common_Methods_Class {
 	//
 	//	Written by Alex Chalyy on 2/29/2016.
 			
-		WebDriver driver = SetFireFox();
+		//WebDriver driver = SetFireFox();
+		WebDriver driver = SetChrome();
 		
 		driver.get(url);	// Navigates to given page.
 		FillTextBox(driver, search_xpath, title);
@@ -35,6 +36,6 @@ public class Extra_Exercise_Four_Class extends Common_Methods_Class {
 		Click_Link(user_rating_sort_button, driver);
 		System.out.println("The results are:");
 		Print_Result_Titles(driver, beginning_xpath, end_xpath, start, end);
-		EndOfProgram();	
+		EndOfProgram();
 	}
 }

@@ -20,7 +20,9 @@ public class Exercise_Three_Class extends Common_Methods_Class {
 	//	Change the folder path in the setProperty line if importing project to another pc.
 	//
 	//	Written by Alex Chalyy on 2/16/2016.
-			
+		
+		Chrome();
+			/*
 		int status;
 		boolean correct_input = false;
 			
@@ -39,7 +41,7 @@ public class Exercise_Three_Class extends Common_Methods_Class {
 				default:	System.out.println(status + " is invalid browser.");
 			               	break;
 			}
-		}	
+		}	*/
 	}
 	
 	//------------------------------------------------------------------------------------------
